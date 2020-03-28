@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SCP Report</title>
+</head>
+<body>
+<h1 th:text="${title}">Welcome</h1>
+<p th:if="${complete}" th:text="${complete}"></p>
+<form method="POST" th:action="${reportForm.isNewReport} ? @{/report/insert} : @{/report/update}" th:object="${reportForm}">
+	<label>Choose a threat type</label>
+	<select name="threatId">
+			<option value="1" th:selected="*{threatId == 1}"> Safe</option>
+			<option value="2" th:selected="*{threatId == 2}"> Euclid</option>
+			<option value="3" th:selected="*{threatId == 3}"> Keter</option>
+			<option value="4" th:selected="*{threatId == 4}"> Neutralized</option>
+			<option value="5" th:selected="*{threatId == 5}"> Explained</option>
+			<option value="6" th:selected="*{threatId == 6}"> Thaumiel</option>
+	</select><br>
+	<div th:if="${#fields.hasErrors('threatId')}" th:errors="*{threatId}"></div>
+	<label>Case title: </label>
+	<input type="text" name="title" th:value="*{title}" /><br>
+	<div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+	<label>Detail: </label>
+	<input type="text" name="detail" th:value="*{detail}" /><br>
+	<div th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}"></div>
+	<label>Date and time: </label>
+	<input type="datetime-local" name="reportedDate" th:value="*{reportedDate}" /><br>
+	<div th:if="${#fields.hasErrors('reportedDate')}" th:errors="*{reportedDate}"></div>
+	<input type="submit" value="Send">
+</form>
+
+<div th:if="${reportForm.isNewReport}" style="margin:10px">
+<h3>Report / Edit / Delete</h3>
+<table>
+	<tr th:each="obj : ${list}">
+		<td th:text=${obj.report_id}></td>
+		<td th:text=${obj.title}></td>
+		<td th:text=${obj.threat_id}></td>
+		<td th:text=${obj.report_date}></td>
+		<td th:text=${obj.description}></td>
+		<td><a type="button" th:href="@{/report/{id}(id=${obj.report_id})}"></a></td>
+		<td>
+			<form method="POST" th:action="@{/report/delete}">
+				<input type="hidden" name="reportId" th:value="${obj.report_id}">
+				<input type="submit" value="delete">
+			</form>
+		</td>
+	</tr>
+</table>
+</div>
+
+<p th:unless="${reportForm.isNewReport}"><a href="#" th:href="@{/report}">Back</a></p>
+
+</body>
+</html>
