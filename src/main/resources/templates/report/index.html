@@ -34,15 +34,15 @@
 <h3>Report / Edit / Delete</h3>
 <table>
 	<tr th:each="obj : ${list}">
-		<td th:text=${obj.report_id}></td>
-		<td th:text=${obj.title}></td>
-		<td th:text=${obj.threat_id}></td>
-		<td th:text=${obj.report_date}></td>
-		<td th:text=${obj.description}></td>
-		<td><a type="button" th:href="@{/report/{id}(id=${obj.report_id})}"></a></td>
+		<td th:text="${obj.reportId}"></td>
+		<td th:text="${obj.title}"></td>
+		<td th:text="${obj.threatLevel}"></td>
+		<td th:text="${obj.reportDate}"></td>
+		<td th:text="${obj.description}"></td>
+		<td><a type="button" th:href="@{/report/{id}(id=${obj.reportId})}"></a></td>
 		<td>
 			<form method="POST" th:action="@{/report/delete}">
-				<input type="hidden" name="reportId" th:value="${obj.report_id}">
+				<input type="hidden" name="reportId" th:value="${obj.reportId}">
 				<input type="submit" value="delete">
 			</form>
 		</td>

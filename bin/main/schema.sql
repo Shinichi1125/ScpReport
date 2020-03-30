@@ -4,7 +4,7 @@ CREATE TABLE report (
   threat_level int(1) NOT NULL,
   report_date datetime NOT NULL, 
   description text,
- PRIMARY KEY(report_id)
+  PRIMARY KEY(report_id)
 );
 
 
