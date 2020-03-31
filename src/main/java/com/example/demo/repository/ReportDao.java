@@ -5,8 +5,7 @@ import java.util.Optional;
 
 import com.example.demo.entity.Report;
 
-public interface ReportDao {
-	
+public interface ReportDao {	
 	List<Report> findAll();
 	Optional<Report> findById(int id);
 	void insert(Report report);
