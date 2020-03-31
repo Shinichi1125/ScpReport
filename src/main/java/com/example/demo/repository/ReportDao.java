@@ -11,5 +11,4 @@ public interface ReportDao {
 	void insert(Report report);
 	int update(Report report);
 	int deleteById(int id);
-	
 }
