@@ -137,7 +137,7 @@ public class ReportController {
 			// processing the update, using flash scope, redirect
 			reportService.update(report);
 			redirectAttributes.addFlashAttribute("complete", "The update is complete");
-			return "redirect:/report/" + reportId;
+			return "redirect:/report" /* + "/" + reportId */;
 		} else {
 			model.addAttribute("reportForm", reportForm);
 			model.addAttribute("title", "List of reports");
@@ -172,7 +172,7 @@ public class ReportController {
 		if(reportId != 0) {
 			report.setReportId(reportId);
 		} else {
-			report.setReportId(findBiggestReportId()+1);   // just an experimental value
+			report.setReportId(findBiggestReportId()+1);   
 		}
 		
 		report.setTitle(reportForm.getTitle());

@@ -27,6 +27,7 @@
 	<label>Date and time: </label>
 	<input type="datetime-local" name="reportedDate" th:value="*{reportedDate}" /><br>
 	<div th:if="${#fields.hasErrors('reportedDate')}" th:errors="*{reportedDate}"></div>
+	<input th:if="${reportId}" type="hidden" name="reportId" th:value="${reportId}">
 	<input type="submit" value="Send">
 </form>
 
