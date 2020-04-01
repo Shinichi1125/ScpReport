@@ -1,6 +1,8 @@
 package com.example.demo.app.report;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -169,7 +171,10 @@ public class ReportController {
 		Report report = new Report();
 		if(reportId != 0) {
 			report.setReportId(reportId);
+		} else {
+			report.setReportId(findBiggestReportId()+1);   // just an experimental value
 		}
+		
 		report.setTitle(reportForm.getTitle());
 		report.setThreatLevel(reportForm.getThreatId());
 		report.setReportDate(reportForm.getReportedDate());
@@ -192,5 +197,22 @@ public class ReportController {
 		reportForm.setNewReport(false);
 		
 		return reportForm; 
+	}
+	
+	private int findBiggestReportId() {
+		int result = 0; 
+		
+		List<Report> reportList = reportService.findAll();
+		ArrayList<Integer> idList = new ArrayList<Integer>();
+		
+		for(Report list: reportList) {
+			idList.add(list.getReportId());
+		}
+		
+		for(int i = 0; i < idList.size(); i++) {
+			result = idList.get(i);
+		}
+		
+		return result; 
 	}
 }

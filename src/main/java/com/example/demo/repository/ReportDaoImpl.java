@@ -47,7 +47,7 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public Optional<Report> findById(int id) {
-		String sql = "SELECT report_id, title, threat_level, report_date, description FROM report"
+		String sql = "SELECT report_id, title, threat_level, report_date, description FROM report "
 				+ "WHERE report_id = ?";
 		
 		Map<String, Object> result = jdbcTemplate.queryForMap(sql, id); 
@@ -75,7 +75,7 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public int update(Report report) {
-		return jdbcTemplate.update("UPDATE report SET(title = ?, threat_level = ?, report_date = ?, description = ? WHERE report_id = ?)",
+		return jdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ? WHERE report_id = ?",
 				report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getReportId());
 	}
 
