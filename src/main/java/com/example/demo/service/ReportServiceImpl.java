@@ -33,7 +33,6 @@ public class ReportServiceImpl implements ReportService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new ReportNotFoundException("The designated report does not exist");
 		}
-		
 	}
 
 	@Override
