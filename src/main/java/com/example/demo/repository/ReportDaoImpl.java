@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Report;
+import com.example.demo.entity.User;
 
 @Repository
 public class ReportDaoImpl implements ReportDao {
@@ -24,7 +25,9 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public List<Report> findAll() {
-		String sql = "SELECT report_id, title, threat_level, report_date, description FROM report";
+		String sql = "SELECT report_id, title, threat_level, report_date, description, "
+							+ "user.user_id, user_name FROM report "
+							+ "INNER JOIN user ON report.user_id = user.user_id";
 		
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql); 
 		
@@ -37,8 +40,15 @@ public class ReportDaoImpl implements ReportDao {
 			report.setThreatLevel((int)result.get("threat_level"));
 			report.setReportDate(((Timestamp) result.get("report_date")).toLocalDateTime());
 			report.setDescription((String)result.get("description"));
-//			report.setReporterId((int)result.get("reporter_id"));
-//			report.setReporterName((String)result.get("reporter_name"));
+			
+			User user = new User();
+			
+			report.setUserId((int)result.get("user_id"));
+
+			user.setUserId((int)result.get("user_id"));
+			user.setUserName((String)result.get("user_name"));
+			
+			report.setUser(user);
 			
 			list.add(report);
 		}	
@@ -47,7 +57,9 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public Optional<Report> findById(int id) {
-		String sql = "SELECT report_id, title, threat_level, report_date, description FROM report "
+		String sql = "SELECT report_id, title, threat_level, report_date, description, "
+				+ "user.user_id, user_name FROM report "
+				+ "INNER JOIN user ON report.user_id = user.user_id "
 				+ "WHERE report_id = ?";
 		
 		Map<String, Object> result = jdbcTemplate.queryForMap(sql, id); 
@@ -58,8 +70,15 @@ public class ReportDaoImpl implements ReportDao {
 		report.setThreatLevel((int)result.get("threat_level"));
 		report.setReportDate(((Timestamp) result.get("report_date")).toLocalDateTime());
 		report.setDescription((String)result.get("description"));
-//		report.setReporterId((int)result.get("reporter_id"));
-//		report.setReporterName((String)result.get("reporter_name"));
+		
+		User user = new User();
+		
+		report.setUserId((int)result.get("user_id"));
+
+		user.setUserId((int)result.get("user_id"));
+		user.setUserName((String)result.get("user_name"));
+		
+		report.setUser(user);
 		
 		// wrap the report with Optional
 		Optional<Report> reportOpt = Optional.ofNullable(report);
@@ -69,8 +88,8 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public void insert(Report report) {
-		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description) VALUES(?, ?, ?, ?, ?)",
-				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription());
+		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, user_id) VALUES(?, ?, ?, ?, ?, ?)",
+				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getUser().getUserId());
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Report;
+import com.example.demo.entity.User;
 import com.example.demo.service.ReportService;
 
 @Controller
@@ -174,6 +175,12 @@ public class ReportController {
 		} else {
 			report.setReportId(findBiggestReportId()+1);   
 		}
+		
+		User user = new User();
+		
+		user.setUserId(1);
+		user.setUserName("Shinichi");
+		report.setUser(user);
 		
 		report.setTitle(reportForm.getTitle());
 		report.setThreatLevel(reportForm.getThreatId());

@@ -34,12 +34,21 @@
 <div th:if="${reportForm.isNewReport}" style="margin:10px">
 <h3>Report / Edit / Delete</h3>
 <table>
+	<tr>
+    	<th>Report ID</th>
+   		<th>Report Title</th>
+   		<th>Threat Level</th>
+   		<th>Date</th>
+   		<th>Description</th>
+   		<th>Reported by</th>
+ 	</tr>
 	<tr th:each="obj : ${list}">
 		<td th:text="${obj.reportId}"></td>
 		<td th:text="${obj.title}"></td>
 		<td th:text="${obj.threatLevel}"></td>
 		<td th:text="${obj.reportDate}"></td>
 		<td th:text="${obj.description}"></td>
+		<td th:text="${obj.user.userName}"></td>
 		<td><a type="button" th:href="@{/report/{id}(id=${obj.reportId})}">Edit</a></td>
 		<td>
 			<form method="POST" th:action="@{/report/delete}">
