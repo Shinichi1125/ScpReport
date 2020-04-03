@@ -207,8 +207,7 @@ public class ReportController {
 		
 		for(Report list: reportList) {
 			idList.add(list.getReportId());
-		}
-		
+		}	
 		for(int i = 0; i < idList.size(); i++) {
 			result = idList.get(i);
 		}
