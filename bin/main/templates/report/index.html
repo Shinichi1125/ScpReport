@@ -34,6 +34,14 @@
 <div th:if="${reportForm.isNewReport}" style="margin:10px">
 <h3>Report / Edit / Delete</h3>
 <table>
+	<tr>
+    	<th>Report ID</th>
+   		<th>Report Title</th>
+   		<th>Threat Level</th>
+   		<th>Date</th>
+   		<th>Description</th>
+   		<th>Reported by</th>
+ 	</tr>
 	<tr th:each="obj : ${list}">
 		<td th:text="${obj.reportId}"></td>
 		<td th:text="${obj.title}"></td>

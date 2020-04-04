@@ -9,9 +9,10 @@ public class Report {
 	private int threatLevel;
 	private LocalDateTime reportDate;
 	private String description;
+	private int userId;
+	private String userName; 
+	private User user;
 	//private Img img;  // to be added later
-//	private int reporterId;
-//	private String reporterName;
 	
 	public Report() {
 		
@@ -57,21 +58,29 @@ public class Report {
 		this.description = description;
 	}
 
-//	public int getReporterId() {
-//		return reporterId;
-//	}
-//
-//	public void setReporterId(int reporterId) {
-//		this.reporterId = reporterId;
-//	}
-//
-//	public String getReporterName() {
-//		return reporterName;
-//	}
-//
-//	public void setReporterName(String reporterName) {
-//		this.reporterName = reporterName;
-//	} 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	} 
+	
+	public User getUser() {
+		return user; 
+	}
+	
+	public void setUser(User user) {
+		this.user = user; 
+	}
 	
 }
 

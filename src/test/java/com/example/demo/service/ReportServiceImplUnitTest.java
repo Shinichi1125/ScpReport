@@ -118,4 +118,9 @@ class ReportServiceImplUnitTest {
 			assertEquals(e.getMessage(), "The report to be deleted does not exist");
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+	
+}
+>>>>>>> main-branch

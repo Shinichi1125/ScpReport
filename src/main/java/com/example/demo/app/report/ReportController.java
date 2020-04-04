@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Report;
+import com.example.demo.entity.User;
 import com.example.demo.service.ReportService;
 
 @Controller
@@ -49,9 +50,9 @@ public class ReportController {
 		List<Report> list = reportService.findAll();
 		
 		model.addAttribute("list", list);
-		model.addAttribute("title", "A list of reports");
+		model.addAttribute("title", "SCP Report");
 		
-		return "report/index";
+		return "report/index_boot";
 	}
 	
 	/**
@@ -75,8 +76,8 @@ public class ReportController {
 				model.addAttribute("reportForm", reportForm);
 				List<Report> list = reportService.findAll();
 				model.addAttribute("list", list);
-				model.addAttribute("title", "List of reports");
-				return "report/index";
+				model.addAttribute("title", "SCP Report");
+				return "report/index_boot";
 			}
 	}
 	
@@ -110,7 +111,7 @@ public class ReportController {
 		model.addAttribute("reportId", id);
 		model.addAttribute("title", "Update Form");
 		
-		return "report/index";
+		return "report/index_boot";
 	}
 	
   /**
@@ -140,8 +141,8 @@ public class ReportController {
 			return "redirect:/report" /* + "/" + reportId */;    // add reportId in case you don't want to automatically redirect
 		} else {
 			model.addAttribute("reportForm", reportForm);
-			model.addAttribute("title", "List of reports");
-			return "report/index";
+			model.addAttribute("title", "SCP Report");
+			return "report/index_boot";
 		}
 	}
 	
@@ -174,6 +175,12 @@ public class ReportController {
 		} else {
 			report.setReportId(findBiggestReportId()+1);   
 		}
+		
+		User user = new User();
+		
+		user.setUserId(1);
+		user.setUserName("Shinichi");
+		report.setUser(user);
 		
 		report.setTitle(reportForm.getTitle());
 		report.setThreatLevel(reportForm.getThreatId());
