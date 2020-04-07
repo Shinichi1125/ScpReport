@@ -138,7 +138,7 @@ public class ReportController {
 			// processing the update, using flash scope, redirect
 			reportService.update(report);
 			redirectAttributes.addFlashAttribute("complete", "The update is complete");
-			return "redirect:/report"; /* + "/" + reportId */    // add reportId in case you don't want to automatically redirect
+			return "redirect:/report";   //  + "/" + reportId     // add reportId in case you don't want to automatically redirect
 		} else {
 			model.addAttribute("reportForm", reportForm);
 			model.addAttribute("title", "SCP Report");
