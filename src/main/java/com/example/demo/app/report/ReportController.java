@@ -217,8 +217,7 @@ public class ReportController {
 		}	
 		for(int i = 0; i < idList.size(); i++) {
 			result = idList.get(i);
-		}
-		
+		}	
 		return result; 
 	}
 }
