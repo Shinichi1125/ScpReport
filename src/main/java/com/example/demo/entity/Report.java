@@ -9,6 +9,7 @@ public class Report {
 	private int threatLevel;
 	private LocalDateTime reportDate;
 	private String description;
+	private String imgPath; 
 	private int userId;
 	private String userName; 
 	private User user;
@@ -56,6 +57,14 @@ public class Report {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getImgPath() {
+		return imgPath;
+	}
+
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 
 	public int getUserId() {

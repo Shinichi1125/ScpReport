@@ -25,7 +25,7 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public List<Report> findAll() {
-		String sql = "SELECT report_id, title, threat_level, report_date, description, "
+		String sql = "SELECT report_id, title, threat_level, report_date, description, img_path, "
 							+ "user.user_id, user_name FROM report "
 							+ "INNER JOIN user ON report.user_id = user.user_id";
 		
@@ -40,6 +40,7 @@ public class ReportDaoImpl implements ReportDao {
 			report.setThreatLevel((int)result.get("threat_level"));
 			report.setReportDate(((Timestamp) result.get("report_date")).toLocalDateTime());
 			report.setDescription((String)result.get("description"));
+			report.setImgPath((String)result.get("img_path"));
 			
 			User user = new User();
 			

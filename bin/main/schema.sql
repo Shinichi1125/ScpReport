@@ -5,6 +5,7 @@ CREATE TABLE report (
   report_date datetime NOT NULL, 
   description text,
   user_id int(3) NOT NULL,
+  img_path varchar(255) DEFAULT '',
   PRIMARY KEY(report_id)
 );
 
