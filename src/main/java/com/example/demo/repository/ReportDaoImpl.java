@@ -16,11 +16,11 @@ import com.example.demo.entity.User;
 @Repository
 public class ReportDaoImpl implements ReportDao {
 	
-	private final JdbcTemplate jdbcTemplate; 
+	private final JdbcTemplate mysqlJdbcTemplate; 
 	
 	@Autowired
-	public ReportDaoImpl(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate; 
+	public ReportDaoImpl(JdbcTemplate mysqlJdbcTemplate) {
+		this.mysqlJdbcTemplate = mysqlJdbcTemplate; 
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ReportDaoImpl implements ReportDao {
 							+ "user.user_id, user_name FROM report "
 							+ "INNER JOIN user ON report.user_id = user.user_id";
 		
-		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql); 
+		List<Map<String, Object>> resultList = mysqlJdbcTemplate.queryForList(sql); 
 		
 		List<Report> list = new ArrayList<Report>(); 
 		
@@ -63,7 +63,7 @@ public class ReportDaoImpl implements ReportDao {
 				+ "INNER JOIN user ON report.user_id = user.user_id "
 				+ "WHERE report_id = ?";
 		
-		Map<String, Object> result = jdbcTemplate.queryForMap(sql, id); 
+		Map<String, Object> result = mysqlJdbcTemplate.queryForMap(sql, id); 
 		
 		Report report = new Report(); 
 		report.setReportId((int)result.get("report_id"));
@@ -89,19 +89,19 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public void insert(Report report) {
-		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, user_id) VALUES(?, ?, ?, ?, ?, ?)",
+		mysqlJdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, user_id) VALUES(?, ?, ?, ?, ?, ?)",
 				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getUser().getUserId());
 	}
 
 	@Override
 	public int update(Report report) {
-		return jdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ? WHERE report_id = ?",
+		return mysqlJdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ? WHERE report_id = ?",
 				report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getReportId());
 	}
 
 	@Override
 	public int deleteById(int id) {
-		return jdbcTemplate.update("DELETE FROM report WHERE report_id = ?", id);
+		return mysqlJdbcTemplate.update("DELETE FROM report WHERE report_id = ?", id);
 	}
 
 }
