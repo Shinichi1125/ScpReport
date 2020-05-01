@@ -19,9 +19,12 @@ public class DBFileRepositoryImpl implements DBFileRepository {
 	}
 	
 	@Override
-	public void storeFile(DBFile file) {
-		 jdbcTemplate.update("INSERT INTO files(file_id, file_name, file_type, image) VALUES(?, ?, ?, ?)",
+	public DBFile storeFile(DBFile file) {
+		DBFile dbFile = new DBFile();
+		jdbcTemplate.update("INSERT INTO files(file_id, file_name, file_type, image) VALUES(?, ?, ?, ?)",
 				file.getId(), file.getFileName(), file.getFileType(), file.getData());
+		dbFile = getFile(file.getId());
+		return dbFile;
 	}
 
 	@Override
