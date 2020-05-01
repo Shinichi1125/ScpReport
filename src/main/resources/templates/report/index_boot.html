@@ -141,7 +141,7 @@
 	      <td th:text="${obj.reportDate}">2020.04.04</td>
 	      <td th:text="${obj.description}">Looks like jelly, human-like-shaped</td>
 	      <td th:text="${obj.user.userName}">Shinichi</td>
-	      <td><img th:src="@{${'/' + obj.imgPath}}" alt="fetched image" width="75" height ="75"/></td>
+	      <td th:if="${obj.imgPath}"><img th:src="@{${'/' + obj.imgPath}}" alt="fetched image" width="75" height ="75"/></td>
 	      <td><a type="button" th:href="@{/report/{id}(id=${obj.reportId})}">Edit</a></td>
 		  <td>
 				<form method="POST" th:action="@{/report/delete}">

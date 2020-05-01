@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.Arrays;
+//import java.util.List;
+//import java.util.stream.Collectors;
 
 @RestController
 public class FileController {
@@ -30,10 +30,15 @@ public class FileController {
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         DBFile dbFile = dbFileStorageService.storeFile(file);
+        
+        // dbFile.getId() returns an int type, but path() requires a string type
+        // because an attempt to cast the return value of dbFile.getId() to String didn't work,
+        // try to concatenate the integer to an empty string to convert it to String 
+        String strId = "" + dbFile.getId();
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
-                .path(dbFile.getId())
+                .path(/*dbFile.getId()*/ strId)
                 .toUriString();
 
         return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
