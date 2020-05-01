@@ -1,9 +1,10 @@
 package com.example.demo.repository;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.DBFile;
 
@@ -18,15 +19,26 @@ public class DBFileRepositoryImpl implements DBFileRepository {
 	}
 	
 	@Override
-	public DBFile storeFile(MultipartFile file) {
-		// TODO Auto-generated method stub
-		return null;
+	public void storeFile(DBFile file) {
+		 jdbcTemplate.update("INSERT INTO files(file_id, file_name, file_type, image) VALUES(?, ?, ?, ?)",
+				file.getId(), file.getFileName(), file.getFileType(), file.getData());
 	}
 
 	@Override
 	public DBFile getFile(String fileId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT file_id, file_name, file_type, image "
+				+ "FROM files "
+				+ "WHERE file_id = ?";
+		
+		Map<String, Object> result = jdbcTemplate.queryForMap(sql, fileId); 
+		
+		DBFile dbFile = new DBFile(); 
+		dbFile.setId((String)result.get("file_id"));
+		dbFile.setFileName((String)result.get("file_name"));
+		dbFile.setFileType((String)result.get("file_type"));
+		dbFile.setData((byte[])result.get("image"));
+		
+		return dbFile;
 	}
 
 }

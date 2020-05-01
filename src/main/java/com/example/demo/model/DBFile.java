@@ -3,19 +3,19 @@ package com.example.demo.model;
 
 //import javax.persistence.*;
 
-@Entity
-@Table(name = "files")
+//@Entity
+//@Table(name = "files")
 public class DBFile {
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+//    @Id
+//    @GeneratedValue(generator = "uuid")
+//    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     private String fileName;
 
     private String fileType;
 
-    @Lob
+    //@Lob
     private byte[] data;
 
     public DBFile() {
