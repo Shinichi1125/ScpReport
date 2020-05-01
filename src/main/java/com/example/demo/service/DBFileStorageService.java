@@ -28,14 +28,14 @@ public class DBFileStorageService {
 
             DBFile dbFile = new DBFile(fileName, file.getContentType(), file.getBytes());
 
-            return dbFileRepository.save(dbFile);
+            return dbFileRepository.storeFile(dbFile);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
 
     public DBFile getFile(String fileId) {
-        return dbFileRepository.findById(fileId)
+        return dbFileRepository.getFile(fileId)
                 .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
     }
 }

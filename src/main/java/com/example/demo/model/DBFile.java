@@ -9,7 +9,12 @@ public class DBFile {
 //    @Id
 //    @GeneratedValue(generator = "uuid")
 //    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+	
+    //private String id;   // it was originally a String type maybe because of uuid,
+								// but as I'm using JDBC Template in stead of JPA 
+								// probably it's better to go with an int type
+    
+    private int id;
 
     private String fileName;
 
@@ -28,11 +33,11 @@ public class DBFile {
         this.data = data;
     }
 
-    public String getId() {
+    public /*String*/ int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(/*String*/ int id) {
         this.id = id;
     }
 
