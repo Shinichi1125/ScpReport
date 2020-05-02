@@ -31,6 +31,8 @@ function uploadSingleFile(file) {
 }
 
 singleUploadForm.addEventListener('submit', function(event){
+	console.log("Single Upload clicked!");
+	
     var files = singleFileUploadInput.files;
     if(files.length === 0) {
         singleFileUploadError.innerHTML = "Please select a file";
