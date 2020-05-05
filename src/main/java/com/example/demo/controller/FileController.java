@@ -67,9 +67,10 @@ public class FileController {
 //    }
 
     @PostMapping("/uploadFile")
-    public ModelAndView fileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+    public /*ModelAndView */ String fileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
     	if(file.isEmpty()) {
-    		return new ModelAndView("status", "message", "Please select a file and try again");
+    		//return new ModelAndView("status", "message", "Please select a file and try again");  
+    		return "report/error";
     	}
     	
     	try {
@@ -81,7 +82,9 @@ public class FileController {
     		e.printStackTrace();
     	}
     	
-    	return new ModelAndView("status", "message", "File Uploaded sucessfully");
+    	//return new ModelAndView("status", "message", "File Uploaded sucessfully");
+    	//return new ModelAndView("/report", "message", "Please select a file and try again");
+    	return "report/index_boot";
     }
     
     @GetMapping("/downloadFile/{fileId}")

@@ -17,3 +17,7 @@ public class IndexController implements ErrorController{
         return "No Mapping Found";
     }
 }
+
+// fetched from a Stack Overflow post
+// https://stackoverflow.com/questions/31134333/this-application-has-no-explicit-mapping-for-error
+
