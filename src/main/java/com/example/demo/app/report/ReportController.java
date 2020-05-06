@@ -34,6 +34,7 @@ public class ReportController {
 	
 	// destination folder to upload the files 
 	private static String UPLOAD_FOLDER = "C://spring_img//";
+	//private static String UPLOAD_FOLDER = "C://Users//marra//Documents//workspace-spring-tool-suite-4-4.5.1.RELEASE\\ScpReport//src//main//resources//static//img//";
 	
 	private final ReportService reportService;
 	
