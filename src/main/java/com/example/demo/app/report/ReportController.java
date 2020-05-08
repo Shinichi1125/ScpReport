@@ -12,6 +12,12 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Report;
 import com.example.demo.entity.User;
+import com.example.demo.model.DBFile;
 import com.example.demo.service.ReportService;
 
 @Controller
@@ -33,7 +40,7 @@ import com.example.demo.service.ReportService;
 public class ReportController {
 	
 	// destination folder to upload the files 
-	private static String UPLOAD_FOLDER = "C://spring_img//";
+	private static String UPLOAD_FOLDER = "C://springimage//";
 	//private static String UPLOAD_FOLDER = "C://Users//marra//Documents//workspace-spring-tool-suite-4-4.5.1.RELEASE\\ScpReport//src//main//resources//static//img//";
 	
 	private final ReportService reportService;
@@ -231,9 +238,8 @@ public class ReportController {
 	}
 	
 	@PostMapping("/uploadFile")
-    public /*ModelAndView */ String fileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+    public String fileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
     	if(file.isEmpty()) {
-    		//return new ModelAndView("status", "message", "Please select a file and try again");  
     		return "report/error";
     	}
     	
@@ -246,9 +252,16 @@ public class ReportController {
     		e.printStackTrace();
     	}
     	
-    	//return new ModelAndView("status", "message", "File Uploaded sucessfully");
-    	//return new ModelAndView("/report", "message", "Please select a file and try again");
-    	//return "report/index_boot";
     	return "redirect:/report";
+    }
+	
+	@GetMapping("/springimage/{fileName}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) throws IOException {
+        String stringPath = "C://springimage//" + fileName;
+		Path imagePath = Paths.get(stringPath);
+		
+        return ResponseEntity.ok()
+        	    .contentType(MediaType.IMAGE_JPEG)
+        	    .body(new InputStreamResource(Files.newInputStream(imagePath)));
     }
 }
