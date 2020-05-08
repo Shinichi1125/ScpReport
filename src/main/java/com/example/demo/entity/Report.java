@@ -10,6 +10,7 @@ public class Report {
 	private LocalDateTime reportDate;
 	private String description;
 	private String imgPath; 
+	private String imgReqPath;
 	private int userId;
 	private String userName; 
 	private User user;
@@ -65,6 +66,22 @@ public class Report {
 
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
+	}
+	
+	public String getImgReqPath() {
+		String rawPath = getImgPath();
+		String str = "";
+		for(int i = 0; i < rawPath.length(); i++) {
+			if(i > 2) {
+				str = str + rawPath.charAt(i);
+			}
+		}
+		imgReqPath = str; 
+		return imgReqPath;
+	}
+
+	public void setImgReqPath(String imgReqPath) {
+		this.imgReqPath = imgReqPath;
 	}
 
 	public int getUserId() {
