@@ -82,7 +82,7 @@
     <h1 th:text="${title}">SCP Report</h1>
   </div>
 
-<form method="POST" th:action="${reportForm.isNewReport} ? @{/report/insert} : @{/report/update}" th:object="${reportForm}">
+<form method="POST" th:action="${reportForm.isNewReport} ? @{/report/insert} : @{/report/update}" th:object="${reportForm}" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleFormControlSelect1">Choose a threat type</label>
     <select class="form-control" id="exampleFormControlSelect1" name="threatId">
@@ -114,6 +114,11 @@
 	<div th:if="${#fields.hasErrors('reportedDate')}" th:errors="*{reportedDate}"></div>
   </div>
   
+  <div class="form-group">
+    <label for="exampleFormControlFile1">File input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+  
   <input th:if="${reportId}" type="hidden" name="reportId" th:value="${reportId}">
   <input type="submit" value="Send">
 </form> 
@@ -142,7 +147,7 @@
 	      <td th:text="${obj.description}">Looks like jelly, human-like-shaped</td>
 	      <td th:text="${obj.user.userName}">Shinichi</td>
 	      <td th:if="${obj.imgPath}"><img th:src="@{${'/report/' + obj.getImgReqPath()}}" alt="fetched image" width="75" height ="75"/></td>
-	      <td th:text="${obj.getImgReqPath()}">path in text</td>  
+	    <!--  <td th:text="${obj.getImgReqPath()}">path in text</td>  -->
 	      <td><a type="button" th:href="@{/report/{id}(id=${obj.reportId})}">Edit</a></td>
 		  <td>
 				<form method="POST" th:action="@{/report/delete}">
@@ -154,10 +159,10 @@
   </tbody>
 </table>
 
-<img th:src="@{/img/Ito kun.jpg}" alt="Photo upload confirmation" width="100" height ="100"/>&nbsp;
+<!--<img th:src="@{/img/Ito kun.jpg}" alt="Photo upload confirmation" width="100" height ="100"/>&nbsp;
 <img th:src="@{/img/nico_chan.jpg}" alt="Photo upload confirmation" width="100" height ="100"/>&nbsp;
 <img th:src="@{/report/springimage/DonPatch.jpg}" alt="Photo upload confirmation" width="100" height ="100"/>&nbsp;
-<img th:src="@{/report/springimage/Marsmanniskor.jpg}" alt="Photo upload confirmation" width="100" height ="100"/>&nbsp;
+<img th:src="@{/report/springimage/Marsmanniskor.jpg}" alt="Photo upload confirmation" width="100" height ="100"/>&nbsp; -->
 <br><br>
 <div class="upload-container">       
     <div class="upload-content">

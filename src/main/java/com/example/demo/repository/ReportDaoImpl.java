@@ -58,7 +58,7 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public Optional<Report> findById(int id) {
-		String sql = "SELECT report_id, title, threat_level, report_date, description, "
+		String sql = "SELECT report_id, title, threat_level, report_date, description, img_path, "
 				+ "user.user_id, user_name FROM report "
 				+ "INNER JOIN user ON report.user_id = user.user_id "
 				+ "WHERE report_id = ?";
@@ -71,6 +71,7 @@ public class ReportDaoImpl implements ReportDao {
 		report.setThreatLevel((int)result.get("threat_level"));
 		report.setReportDate(((Timestamp) result.get("report_date")).toLocalDateTime());
 		report.setDescription((String)result.get("description"));
+		report.setImgPath((String)result.get("img_path"));
 		
 		User user = new User();
 		
@@ -89,14 +90,14 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public void insert(Report report) {
-		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, user_id) VALUES(?, ?, ?, ?, ?, ?)",
-				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getUser().getUserId());
+		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, img_path, user_id) VALUES(?, ?, ?, ?, ?, ?, ?)",
+				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getImgPath(), report.getUser().getUserId());
 	}
 
 	@Override
 	public int update(Report report) {
-		return jdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ? WHERE report_id = ?",
-				report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getReportId());
+		return jdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ?, img_path = ? WHERE report_id = ?",
+				report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getImgPath(), report.getReportId());
 	}
 
 	@Override
