@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.example.demo.entity.Files;
+
 public class ReportForm {
 	
 	
@@ -28,6 +30,8 @@ public class ReportForm {
 	private LocalDateTime reportedDate;
 	
 	public boolean isNewReport;
+	
+	private Files file;
 
 	public ReportForm() {
 		
@@ -38,13 +42,15 @@ public class ReportForm {
 							 String title,
 							 String detail,
 							 LocalDateTime reportedDate,
-							 boolean isNewReport) {
+							 boolean isNewReport,
+							 Files file) {
 		//this.reportId = reportId;
 		this.threatId = threatId;
 		this.title = title; 
 		this.detail = detail; 
 		this.reportedDate = reportedDate; 
 		this.isNewReport = isNewReport; 
+		this.file = file;
 	}
 	
 //	public int getReportId() {
@@ -94,5 +100,13 @@ public class ReportForm {
 	public void setNewReport(boolean isNewReport) {
 		this.isNewReport = isNewReport;
 	} 
+	
+	public Files getFile() {
+		return file;
+	}
+	
+	public void setFile(Files file) {
+		this.file = file; 
+	}
 	
 }

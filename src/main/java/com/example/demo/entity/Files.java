@@ -44,4 +44,5 @@ public class Files {
 	public void setImage(Blob image) {
 		this.image = image;
 	} 
+	
 }

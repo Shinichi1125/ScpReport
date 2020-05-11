@@ -202,6 +202,10 @@ public class ReportController {
 		report.setThreatLevel(reportForm.getThreatId());
 		report.setReportDate(reportForm.getReportedDate());
 		report.setDescription(reportForm.getDetail());	
+		
+		report.setImgPath(UPLOAD_FOLDER + reportForm.getFile().getFileName());
+		report.setFile(reportForm.getFile());
+		
 		return report; 
 	}
 	
@@ -257,7 +261,7 @@ public class ReportController {
 	
 	@GetMapping("/springimage/{fileName}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) throws IOException {
-        String stringPath = "C://springimage//" + fileName;
+        String stringPath = UPLOAD_FOLDER + fileName;
 		Path imagePath = Paths.get(stringPath);
 		
         return ResponseEntity.ok()

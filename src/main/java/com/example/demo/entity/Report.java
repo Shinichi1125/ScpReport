@@ -14,6 +14,8 @@ public class Report {
 	private int userId;
 	private String userName; 
 	private User user;
+	private int fileId;
+	private Files file; 
 	//private Img img;  // to be added later
 	
 	public Report() {
@@ -106,6 +108,22 @@ public class Report {
 	
 	public void setUser(User user) {
 		this.user = user; 
+	}
+	
+	public int getFileId() {
+		return fileId; 
+	}
+	
+	public void setFileId(int fileId) {
+		this.fileId = fileId; 
+	}
+	
+	public Files getFile() {
+		return file; 
+	}
+	
+	public void setFile(Files file) {
+		this.file = file; 
 	}
 	
 }
