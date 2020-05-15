@@ -15,7 +15,7 @@ public class Report {
 	private String userName; 
 	private User user;
 	private int fileId;
-	private Files file; 
+	private File file; 
 	//private Img img;  // to be added later
 	
 	public Report() {
@@ -118,11 +118,11 @@ public class Report {
 		this.fileId = fileId; 
 	}
 	
-	public Files getFile() {
+	public File getFile() {
 		return file; 
 	}
 	
-	public void setFile(Files file) {
+	public void setFile(File file) {
 		this.file = file; 
 	}
 	

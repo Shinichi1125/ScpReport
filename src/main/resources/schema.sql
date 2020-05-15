@@ -15,7 +15,7 @@ CREATE TABLE user (
   PRIMARY KEY(user_id)
 );
 
-CREATE TABLE files (
+CREATE TABLE file (
   file_id int NOT NULL AUTO_INCREMENT,
   file_name varchar(30) NOT NULL,
   file_type varchar(30) NOT NULL,

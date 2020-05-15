@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.example.demo.entity.Files;
+import com.example.demo.entity.File;
 
 public class ReportForm {
 	
@@ -31,7 +31,7 @@ public class ReportForm {
 	
 	public boolean isNewReport;
 	
-	private Files file;
+	private File file;
 
 	public ReportForm() {
 		
@@ -43,7 +43,7 @@ public class ReportForm {
 							 String detail,
 							 LocalDateTime reportedDate,
 							 boolean isNewReport,
-							 Files file) {
+							 File file) {
 		//this.reportId = reportId;
 		this.threatId = threatId;
 		this.title = title; 
@@ -101,11 +101,11 @@ public class ReportForm {
 		this.isNewReport = isNewReport;
 	} 
 	
-	public Files getFile() {
+	public File getFile() {
 		return file;
 	}
 	
-	public void setFile(Files file) {
+	public void setFile(File file) {
 		this.file = file; 
 	}
 	
