@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 
 public class Report {
@@ -15,8 +16,10 @@ public class Report {
 	private String userName; 
 	private User user;
 	private int fileId;
-	private File file; 
-	//private Img img;  // to be added later
+	private String fileName;
+	private String fileType; 
+	private Blob image;
+	//private File file; 
 	
 	public Report() {
 		
@@ -117,23 +120,43 @@ public class Report {
 	public void setFileId(int fileId) {
 		this.fileId = fileId; 
 	}
-	
-	public File getFile() {
-		return file; 
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	public Blob getImage() {
+		return image;
+	}
+
+	public void setImage(Blob image) {
+		this.image = image;
 	}
 	
-	public void setFile(File file) {
-		this.file = file; 
-	}
 	
+	
+//	public File getFile() {
+//		return file; 
+//	}
+//	
+//	public void setFile(File file) {
+//		this.file = file; 
+//	}
+//	
 }
 
-//Report ID: reportId
-//Threat level: (1: Safe, 2: Euclid, 3:  Keter, 4: Neutralized, 5: Explained, 6: Thaumiel)
-//Reported Date: Date
-//Description: Text
-//Image: img
-//Reporter ID: reporterID
-//Reporter Name: reporterName
+
 
 
