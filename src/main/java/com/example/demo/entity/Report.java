@@ -15,10 +15,11 @@ public class Report {
 	private int userId;
 	private String userName; 
 	private User user;
-	private int fileId;
+	//private int fileId;
 	private String fileName;
 	private String fileType; 
-	private Blob image;
+	//private Blob image;
+	private byte[] image;
 	//private File file; 
 	
 	public Report() {
@@ -113,13 +114,13 @@ public class Report {
 		this.user = user; 
 	}
 	
-	public int getFileId() {
-		return fileId; 
-	}
-	
-	public void setFileId(int fileId) {
-		this.fileId = fileId; 
-	}
+//	public int getFileId() {
+//		return fileId; 
+//	}
+//	
+//	public void setFileId(int fileId) {
+//		this.fileId = fileId; 
+//	}
 
 	public String getFileName() {
 		return fileName;
@@ -137,15 +138,13 @@ public class Report {
 		this.fileType = fileType;
 	}
 
-	public Blob getImage() {
+	public /*Blob*/ byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(/*Blob*/ byte[] image) {
 		this.image = image;
 	}
-	
-	
 	
 //	public File getFile() {
 //		return file; 

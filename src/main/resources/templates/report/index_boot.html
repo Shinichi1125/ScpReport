@@ -146,7 +146,9 @@
 	      <td th:text="${obj.reportDate}">2020.04.04</td>
 	      <td th:text="${obj.description}">Looks like jelly, human-like-shaped</td>
 	      <td th:text="${obj.user.userName}">Shinichi</td>
-	      <td th:if="${obj.imgPath}"><img th:src="@{${'/report/' + obj.getImgReqPath()}}" alt="fetched image" width="75" height ="75"/></td>
+	      <td th:if="${obj.image}"><img th:src="${'/report/uploaded-images/' + obj.reportId}" alt="fetched image" width="75" height ="75"/></td>
+	     <!-- <td th:text="${obj.image}">Image's byte data</td> -->
+	     <!-- <td th:if="${obj.imgPath}"><img th:src="@{${'/report/' + obj.getImgReqPath()}}" alt="fetched image" width="75" height ="75"/></td> -->
 	    <!--  <td th:text="${obj.getImgReqPath()}">path in text</td>  -->
 	      <td><a type="button" th:href="@{/report/{id}(id=${obj.reportId})}">Edit</a></td>
 		  <td>

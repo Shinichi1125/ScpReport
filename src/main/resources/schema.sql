@@ -6,7 +6,6 @@ CREATE TABLE report (
   description text,
   user_id int NOT NULL,
   img_path varchar(255) DEFAULT '',
-  file_id int AUTO_INCREMENT,
   file_name varchar(30),
   file_type varchar(30),
   image blob,
@@ -19,13 +18,6 @@ CREATE TABLE user (
   PRIMARY KEY(user_id)
 );
 
-#CREATE TABLE file (
-#  file_id int NOT NULL AUTO_INCREMENT,
-#  file_name varchar(30) NOT NULL,
-#  file_type varchar(30) NOT NULL,
-#  image blob,
-#  PRIMARY KEY(file_id)
-#);
 
 
 

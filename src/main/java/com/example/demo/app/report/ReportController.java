@@ -203,8 +203,8 @@ public class ReportController {
 		report.setReportDate(reportForm.getReportedDate());
 		report.setDescription(reportForm.getDetail());	
 		
-		report.setImgPath(UPLOAD_FOLDER + reportForm.getFile().getFileName());
-		report.setFile(reportForm.getFile());
+//		report.setImgPath(UPLOAD_FOLDER + reportForm.getFile().getFileName());
+//		report.setFile(reportForm.getFile());
 		
 		return report; 
 	}
@@ -268,4 +268,11 @@ public class ReportController {
         	    .contentType(MediaType.IMAGE_JPEG)
         	    .body(new InputStreamResource(Files.newInputStream(imagePath)));
     }
+	
+	@GetMapping("/uploaded-images/{reportId}")
+	ResponseEntity<byte[]> reportImage(@PathVariable int reportId) {
+	  Optional<Report> report = reportService.getReport(reportId); 
+	  byte[] image = report.get().getImage();
+	  return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+	}
 }
