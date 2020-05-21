@@ -6,16 +6,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Report;
 import com.example.demo.entity.User;
-import com.example.demo.model.DBFile;
 import com.example.demo.service.ReportService;
 
 @Controller
@@ -50,6 +48,8 @@ public class ReportController {
 		this.reportService = reportService;
 	}
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReportController.class);
+	
   /**
 	* Displays a list of reports
 	* @param reportForm
@@ -58,6 +58,8 @@ public class ReportController {
 	*/
 	@GetMapping
 	public String report(ReportForm reportForm, Model model) {
+		
+		LOGGER.info("The default page called");
 		
 		// This statement makes POST a new post
 		reportForm.setNewReport(true);
@@ -81,6 +83,9 @@ public class ReportController {
 			@Valid @ModelAttribute ReportForm reportForm,
 			BindingResult result,
 			Model model) {
+		
+			LOGGER.info("The report title is " + reportForm.getTitle());
+			LOGGER.info("The content type is " + reportForm.getFile().getContentType());
 		
 			Report report = makeReport(reportForm, 0);
 			
@@ -202,6 +207,12 @@ public class ReportController {
 		report.setThreatLevel(reportForm.getThreatId());
 		report.setReportDate(reportForm.getReportedDate());
 		report.setDescription(reportForm.getDetail());	
+		try {
+			report.setImage(reportForm.getFile().getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		report.setImgPath(UPLOAD_FOLDER + reportForm.getFile().getFileName());
 //		report.setFile(reportForm.getFile());

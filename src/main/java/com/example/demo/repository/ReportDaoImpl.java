@@ -92,14 +92,14 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public void insert(Report report) {
-		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, img_path, user_id) VALUES(?, ?, ?, ?, ?, ?, ?)",
-				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getImgPath(), report.getUser().getUserId());
+		jdbcTemplate.update("INSERT INTO report(report_id, title, threat_level, report_date, description, image, user_id) VALUES(?, ?, ?, ?, ?, ?, ?)",
+				report.getReportId(), report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getImage(), report.getUser().getUserId());
 	}
 
 	@Override
 	public int update(Report report) {
-		return jdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ?, img_path = ? WHERE report_id = ?",
-				report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getImgPath(), report.getReportId());
+		return jdbcTemplate.update("UPDATE report SET title = ?, threat_level = ?, report_date = ?, description = ?, image = ? WHERE report_id = ?",
+				report.getTitle(), report.getThreatLevel(), report.getReportDate(), report.getDescription(), report.getImage(), report.getReportId());
 	}
 
 	@Override
