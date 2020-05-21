@@ -116,7 +116,7 @@
   
   <div class="form-group">
     <label for="exampleFormControlFile1">File input</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" th:value="*{file}">
   </div>
   
   <input th:if="${reportId}" type="hidden" name="reportId" th:value="${reportId}">

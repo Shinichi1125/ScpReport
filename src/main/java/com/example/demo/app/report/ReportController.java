@@ -85,7 +85,7 @@ public class ReportController {
 			Model model) {
 		
 			LOGGER.info("The report title is " + reportForm.getTitle());
-			LOGGER.info("The content type is " + reportForm.getFile().getContentType());
+			LOGGER.info("The content type is " + reportForm.getFile().getName());
 		
 			Report report = makeReport(reportForm, 0);
 			
